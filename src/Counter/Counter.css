@@ -1,0 +1,88 @@
+.main {
+    height: 220px;
+    width: 200px;
+    align-content: center;
+    padding: 30px;
+    border: black 1px solid;
+    background-color: whitesmoke;
+
+    margin: 0 auto;
+}
+
+.button {
+    height: 100px;
+    width: 200px;
+    align-content: center;
+    border: black 1px solid;
+    color: black;
+    display: flex;
+    vertical-align: middle;
+    background-color: lightslategrey;
+}
+
+.count {
+    height: 100px;
+    width: 200px;
+    align-content: center;
+    border: black 1px solid;
+    color: black;
+    display: flex;
+    vertical-align: middle;
+    background-color: darkslategray;
+}
+
+.inc {
+    height: 30px;
+    width: 60px;
+    border: black 1px solid;
+    align-content: center;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+    background-color: whitesmoke;
+}
+
+.reset {
+    height: 30px;
+    width: 60px;
+    border: black 1px solid;
+    align-content: center;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+    background-color: whitesmoke;
+}
+
+.noActiveBtn {
+    height: 30px;
+    width: 60px;
+    border: black 1px solid;
+    margin: auto;
+    opacity: 0.5;
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+    background-color: whitesmoke;
+}
+
+
+.maxCount {
+    color: red;
+    height: 70px;
+    width: 50px;
+    text-align: center;
+    margin: auto;
+    font-size: 50px;
+}
+
+.minCount {
+    color: black;
+    height: 70px;
+    width: 50px;
+    text-align: center;
+    margin: auto;
+    font-size: 50px;
+}
+
