@@ -3,43 +3,43 @@ import './Counter.css';
 
 
 const Counter = () => {
-    let [number, setNumber] = useState(0);
+    const minValue = 0;
+    const MaxValue = 5;
+
+    let [number, setNumber] = useState(minValue);
     let [maxNumb, setMaxNumb] = useState(true);
     let [disableBtn, setDisableBtn] = useState(false);
 
     const Inc = () => {
 
-        let plus = number;
-        if (plus >= 0 && plus < 5) {
-            plus++;
-            setNumber(plus);
+        if (number >= minValue && number < MaxValue) {
+            setNumber(number + 1);
         }
-        if (plus === 5) {
+        if (number === MaxValue) {
             setMaxNumb(false)
-
         }
-        if (number === 0) {
+        if (number === minValue) {
             setDisableBtn(true)
         }
     };
 
     const Reset = () => {
-        setNumber(0);
+        setNumber(minValue);
         setMaxNumb(true);
-        setDisableBtn(false)
+        setDisableBtn(false);
     };
 
     return (
         <div className='main'>
             <div className='count'>
-                <div className={maxNumb ? 'minCount' : 'maxCount'}>{number}</div>
+                <div className={number !== MaxValue ? 'minCount' : 'maxCount'}>{number}</div>
             </div>
             <div className='button'>
             <div className={maxNumb ? 'inc' : 'noActiveBtn'}>
-                <button onClick={Inc}>inc</button>
+                <button onClick={Inc} disabled={number === MaxValue}>inc</button>
             </div>
             <div className={disableBtn ? 'reset' : 'noActiveBtn'}>
-                <button onClick={Reset}>reset</button>
+                <button onClick={Reset} disabled={number === minValue}>reset</button>
             </div>
             </div>
         </div>
