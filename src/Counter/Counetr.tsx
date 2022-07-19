@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import './Counter.css';
+import UseButton from "../Button/UseButton";
 
 
 const Counter = () => {
@@ -35,12 +36,12 @@ const Counter = () => {
                 <div className={number !== MaxValue ? 'minCount' : 'maxCount'}>{number}</div>
             </div>
             <div className='button'>
-            <div className={maxNumb ? 'inc' : 'noActiveBtn'}>
-                <button onClick={Inc} disabled={number === MaxValue}>inc</button>
-            </div>
-            <div className={disableBtn ? 'reset' : 'noActiveBtn'}>
-                <button onClick={Reset} disabled={number === minValue}>reset</button>
-            </div>
+                <div className={maxNumb ? 'inc' : 'noActiveBtn'}>
+                    <UseButton name={'inc'} callBack={Inc} />
+                </div>
+                <div className={disableBtn ? 'reset' : 'noActiveBtn'}>
+                    <UseButton name={'reset'} callBack={Reset} />
+                </div>
             </div>
         </div>
     )
