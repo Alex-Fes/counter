@@ -15,3 +15,29 @@
 .value {
     display: inline;
 }
+.error {
+    box-shadow: 0 0 2px 1px red;
+}
+
+.button {
+    height: 30px;
+    width: 60px;
+    border: black 1px solid;
+    align-content: center;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+    background-color: whitesmoke;
+}
+.noActiveBtn {
+    height: 30px;
+    width: 60px;
+    border: black 1px solid;
+    margin: auto;
+    opacity: 0.5;
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+    background-color: whitesmoke;
+}

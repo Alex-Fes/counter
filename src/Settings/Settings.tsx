@@ -1,37 +1,37 @@
-import React, {useState} from "react";
+import React, {ChangeEvent} from "react";
 import './Settings.module.css'
 import UseButton from "../Button/UseButton";
 
-
-
-const Settings = () => {
-    const [value, setValue] = useState(0);
-
-
-
-
-const setSettings = () => {
-
-}
-const onChangeValueHandler = () => {
-
+export type SettingsPropsType = {
+    onChangeStartValueHandler: (value: number) => void
+    onChangeMaxValueHandler: (value: number) => void
+    onSetSettingsHandler: () => void
+    disableSettings: boolean
 }
 
-    return<div className='main'>
+
+const Settings = (props: SettingsPropsType) => {
+    const onChangeMaxValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        props.onChangeMaxValueHandler(e.currentTarget.valueAsNumber)
+    }
+    const onChangeStartValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        props.onChangeStartValueHandler(e.currentTarget.valueAsNumber)
+    }
+
+    return <div className='main'>
         <div className='setting'>
             <div className='value'>
 
-                <UseButton name={'max value'} callBack={()=>{}} />
-                <input type='number' onChange={onChangeValueHandler}/>
+                max value:
+                <input type='number' onChange={onChangeMaxValueHandler}/>
             </div>
             <div className='value'>
-
-                <UseButton name={'start value'} callBack={()=>{}} />
-                <input type='number' onChange={onChangeValueHandler}/>
+                start value:
+                <input type='number' className='error' onChange={onChangeStartValueHandler}/>
             </div>
         </div>
-        <div className='button'>
-            <UseButton name={'set'} callBack={setSettings} />
+        <div className={props.disableSettings ? 'button' : 'noActiveBtn'}>
+            <UseButton name={'set'} callBack={props.onSetSettingsHandler}/>
         </div>
     </div>
 }

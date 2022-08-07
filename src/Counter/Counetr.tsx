@@ -1,49 +1,143 @@
-import React, {useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import './Counter.css';
 import UseButton from "../Button/UseButton";
+import Settings from "../Settings/Settings";
 
 
 const Counter = () => {
-    const minValue = 0;
-    const MaxValue = 5;
+    let minValue = 0;
+    let maxValue = 5;
 
-    let [number, setNumber] = useState(minValue);
+    let [minNumber, setMinNumber] = useState(minValue);
+    let [maxNumber, setMaxNumber] = useState(maxValue);
+
     let [maxNumb, setMaxNumb] = useState(true);
     let [disableBtn, setDisableBtn] = useState(false);
+    let [disableSettings, setDisableSettings] = useState(false);
+    let [error, setError] = useState(false);
+
+    useEffect(() => {
+        let minValueAsString = localStorage.getItem('counterMinValue')
+        let maxValueAsString = localStorage.getItem('counterMaxValue')
+        if (minValueAsString) {
+            let newValue = JSON.parse(minValueAsString)
+            setMinNumber(newValue)
+        }
+        if (maxValueAsString) {
+            let newValue = JSON.parse(maxValueAsString)
+            setMaxNumber(newValue)
+        }
+    }, [])
+
+    // useEffect(() => {
+    //     localStorage.setItem('counterValue', JSON.stringify(minNumber))
+    // }, [minNumber])
 
     const Inc = () => {
-
-        if (number >= minValue && number < MaxValue) {
-            setNumber(number + 1);
+        if (minNumber < maxNumber) {
+            setMinNumber(minNumber + 1);
         }
-        if (number === MaxValue) {
+        if (minNumber === maxNumber) {
             setMaxNumb(false)
         }
-        if (number === minValue) {
+        if (minNumber === minNumber) {
             setDisableBtn(true)
         }
     };
-
     const Reset = () => {
-        setNumber(minValue);
-        setMaxNumb(true);
-        setDisableBtn(false);
+        let minValueAsString = localStorage.getItem('counterMinValue')
+        let maxValueAsString = localStorage.getItem('counterMaxValue')
+        if (minValueAsString) {
+            let newValue = JSON.parse(minValueAsString)
+            setMinNumber(newValue)
+        }else {
+            setMinNumber(minValue)
+            setMaxNumb(true);
+            setDisableBtn(true);
+        }
+        if (maxValueAsString) {
+            let newValue = JSON.parse(maxValueAsString)
+            setMaxNumber(newValue)
+        } else {
+            setMaxNumb(true);
+            setDisableBtn(false);
+            setMaxNumber(maxValue)
+        }
+        // setMinNumber(minValue)
+        // setMaxNumber(maxValue)
+         setMaxNumb(true);
+        setDisableBtn(false)
     };
+
+    const onChangeMaxValueHandler = (value: number) => {
+        if (value >= 0 && value > minValue) {
+            maxValue = value;
+            localStorage.setItem('counterMaxValue', JSON.stringify(maxValue))
+            setDisableSettings(true)
+            setMaxNumb(false)
+            setDisableBtn(false);
+        } else {
+            setError(true)
+            setDisableSettings(false)
+            // setDisableBtn(true)
+            // setMaxNumb(false)
+        }
+    }
+    const onChangeStartValueHandler = (value: number) => {
+        if (value >= 0 && value < maxValue) {
+            minValue = value;
+            localStorage.setItem('counterMinValue', JSON.stringify(minValue))
+            setDisableSettings(true)
+            setMaxNumb(false)
+            setDisableBtn(false);
+        } else {
+            setError(true)
+            setDisableSettings(false)
+            // setDisableBtn(false)
+            // setMaxNumb(false)
+        }
+    }
+
+
+    const onSetSettingsHandler = () => {
+        let minValueAsString = localStorage.getItem('counterMinValue')
+        let maxValueAsString = localStorage.getItem('counterMaxValue')
+        if (minValueAsString) {
+            let newValue = JSON.parse(minValueAsString)
+            setMinNumber(newValue)
+        }
+        if (maxValueAsString) {
+            let newValue = JSON.parse(maxValueAsString)
+            setMaxNumber(newValue)
+        }
+        setDisableSettings(false)
+        setMaxNumb(true)
+        setDisableBtn(false)
+    }
+
 
     return (
         <div className='main'>
             <div className='count'>
-                <div className={number !== MaxValue ? 'minCount' : 'maxCount'}>{number}</div>
+                <div className={minNumber !== maxNumber ? 'minCount' : 'maxCount'}>{minNumber}</div>
             </div>
             <div className='button'>
                 <div className={maxNumb ? 'inc' : 'noActiveBtn'}>
-                    <UseButton name={'inc'} callBack={Inc} />
+                    <UseButton name={'inc'} callBack={Inc}/>
                 </div>
                 <div className={disableBtn ? 'reset' : 'noActiveBtn'}>
-                    <UseButton name={'reset'} callBack={Reset} />
+                    <UseButton name={'reset'} callBack={Reset}/>
                 </div>
             </div>
+            <Settings
+                disableSettings={disableSettings}
+                onChangeStartValueHandler={onChangeStartValueHandler}
+                onChangeMaxValueHandler={onChangeMaxValueHandler}
+                onSetSettingsHandler={onSetSettingsHandler}
+            />
         </div>
+
+
     )
 }
 
