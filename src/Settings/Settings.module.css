@@ -41,3 +41,7 @@
     border-radius: 10px;
     background-color: whitesmoke;
 }
+
+[aria-disabled="true"] {
+    opacity: 0.5;
+}

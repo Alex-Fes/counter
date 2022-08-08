@@ -85,4 +85,10 @@
     margin: auto;
     font-size: 50px;
 }
-
+.text{
+    font-size: 1.5rem;
+}
+.text .red {
+    font-size: 1.5rem;
+    color: red;
+}

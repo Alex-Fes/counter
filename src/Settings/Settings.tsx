@@ -30,7 +30,7 @@ const Settings = (props: SettingsPropsType) => {
                 <input type='number' className='error' onChange={onChangeStartValueHandler}/>
             </div>
         </div>
-        <div className={props.disableSettings ? 'button' : 'noActiveBtn'}>
+        <div aria-disabled={!props.disableSettings}>
             <UseButton name={'set'} callBack={props.onSetSettingsHandler}/>
         </div>
     </div>
