@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import './Counter.css';
+import './Counter2.css';
 import UseButton from "../Button/UseButton";
-import Settings from "../Settings/Settings";
+import Settings from "./Settings2/Settings";
 
 
 const Counter = () => {
@@ -139,7 +139,7 @@ const Counter = () => {
     }
     const showText = () => {
         if (error) {
-            return <p className={'text'}>"Incorrect value!"</p>
+            return <p className={'text red'}>"Incorrect value!"</p>
         } else {
             return !maxNumb ? <p className={'text'}> Enter values and press 'set'</p>
                 : <p>{minNumber}</p>

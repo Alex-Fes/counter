@@ -1,9 +1,12 @@
 import React from 'react';
-
+import s from './UseButton.module.css'
 
 type UseButtonPropsType = {
     name: string
     callBack: () => void
+    btnDisabled?: boolean
+    numb?: number
+    maxNumber?: number
 }
 
 
@@ -14,7 +17,11 @@ const UseButton =(props: UseButtonPropsType) =>{
     }
     return (
         <div className={'message'}>
-            <button onClick={onClickButtonHandler}>{props.name}</button>
+            <button
+                onClick={onClickButtonHandler}
+                disabled={props.btnDisabled}
+className={s.button}
+            >{props.name}</button>
         </div>
     );
 }

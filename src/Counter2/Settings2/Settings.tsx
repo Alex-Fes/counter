@@ -1,6 +1,6 @@
 import React, {ChangeEvent} from "react";
 import './Settings.module.css'
-import UseButton from "../Button/UseButton";
+import UseButton from "../../Button/UseButton";
 
 export type SettingsPropsType = {
     onChangeStartValueHandler: (value: number) => void

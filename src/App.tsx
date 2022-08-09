@@ -1,13 +1,13 @@
 import React from 'react';
 import './App.css';
-import Counter from "./Counter/Counetr";
-import Settings from "./Settings/Settings";
+import CounterMain from "./Counter-Main/CounterMain";
 
 function App() {
     return (
         <div className="App">
-            <Counter/>
-            {/*<Settings/>*/}
+
+            <CounterMain/>
+
         </div>
     );
 }
