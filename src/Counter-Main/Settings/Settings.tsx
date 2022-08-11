@@ -10,8 +10,8 @@ export type SettingsPropsType = {
     setMinNumber: (value: number) => void
     setMaxNumber: (value: number) => void
     setNumb: (value: number) => void
-
     setDisableBtn: (value: boolean) => void
+    //setError: (value: boolean) => void
 }
 
 
@@ -27,17 +27,37 @@ const Settings = (props: SettingsPropsType) => {
         borderRadius: '5px',
     }
 
-    useEffect(() => {//turn off 'set' when localMinValue > localMaxValue
+    useEffect(() => {//turn off 'set' and 'on' red input when localMinValue > localMaxValue
         if (localMaxValue <= localMinValue) {
             setLocalBtnDisabled(true)
+
         } else setLocalBtnDisabled(false)
     }, [localMinValue, localMaxValue])
+
+    useEffect(() => {//turn off 'set' and 'on' red input when maxValue < minValue
+        if (localMinValue >= localMaxValue) {
+            setLocalBtnDisabled(true)
+            setBelowZero(true)
+        } else {
+            setBelowZero(false)
+        }
+    }, [localMinValue, localMaxValue])
+
     useEffect(() => {// turn off 'set' when values in state and inputs are same
+        // if(localMaxValue === props.maxValue) {
+        //     setLocalBtnDisabled(true)
+        //     props.setError(true)
+        // } else {setLocalBtnDisabled(false)
+        //     props.setError(false)}
         localMaxValue === props.maxValue ? setLocalBtnDisabled(true) : setLocalBtnDisabled(false)
         localMinValue === props.minValue ? setLocalBtnDisabled(true) : setLocalBtnDisabled(false)
     }, [props.maxValue, props.minValue])
-    useEffect(() => {//turn off 'set' when values in inputs below 0
-        if (localMinValue < 0 || localMaxValue < 0) {
+    useEffect(() => {//turn off 'set' when values in inputs below 0, when localMinValue >= localMaxValue
+        if (localMinValue < 0 || localMaxValue < 0 ) {
+            setLocalBtnDisabled(true)
+            setBelowZero(true)
+        }
+        if (localMinValue === localMaxValue || localMinValue > localMaxValue) {
             setLocalBtnDisabled(true)
             setBelowZero(true)
         } else {

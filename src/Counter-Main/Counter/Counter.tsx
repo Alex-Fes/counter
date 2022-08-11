@@ -38,7 +38,9 @@ export function Counter(props: CounterPropsType) {
                     maxNumber={props.maxValue}
                     numb={props.numb}
                 />
-                <UseButton name={'Reset'} callBack={props.reset}/>
+                <UseButton
+                    name={'Reset'}
+                    callBack={props.reset}/>
 
             </div>
         </div>

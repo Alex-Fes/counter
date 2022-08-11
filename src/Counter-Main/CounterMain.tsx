@@ -22,6 +22,7 @@ const CounterMain = () => {
     useEffect(() => {
         setNumb(minValue)
     }, [minValue])
+
     useEffect(() => {//watch for minNumber and maxNumber
         setError(false)
         setError(minNumber < 0 || maxNumber < 0)
@@ -31,10 +32,10 @@ const CounterMain = () => {
 
     //Buttons callback
     const inc = () => {
-
         setNumb(numb + 1);
         numb + 1 >= maxValue && setDisableBtn(!disableBtn)
-        setError(numb + 1 === maxValue)
+
+        setError(numb + 1 !== maxValue)
     };
     const reset = () => {
         setNumb(minValue)
@@ -53,6 +54,7 @@ const CounterMain = () => {
                 setMaxNumber={setMaxNumber}
                 setNumb={setNumb}
                 setDisableBtn={setDisableBtn}
+                //setError={setError}
             />
             <Counter
                 numb={numb}

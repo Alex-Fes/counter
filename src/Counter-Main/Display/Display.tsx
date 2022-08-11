@@ -16,10 +16,11 @@ type DisplayPropsType = {
 export function Display(props: DisplayPropsType) {
 //states
     const [title, setTitle] = useState<TitleType>('')
-    const [startTitle, setStartTitle] = useState<string>('Enter values and press "set"')
+    //const [startTitle, setStartTitle] = useState<string>('Enter values and press "set"')
 
     let colorForText = s.normal;
-    props.error ? colorForText = s.maxNum : colorForText = s.normal;
+
+    props.error ? colorForText = s.normal : colorForText = s.maxNum;
 
     //UseEffects
     useEffect(() => {
