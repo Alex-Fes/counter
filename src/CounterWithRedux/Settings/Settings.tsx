@@ -9,7 +9,7 @@ import UseButton from "../../Button/UseButton";
 export const Settings = () => {
     let state = useSelector<StoreType, InitialStateType>(state => state.settings);
 
-    const [localMaxValue, setLocalmaxValue] = useState(state.maxCount);
+    const [localMaxValue, setLocalMaxValue] = useState(state.maxCount);
     const [localStartValue, setLocalStartValue] = useState(state.startCount);
 
     const dispatch = useDispatch();
@@ -23,7 +23,7 @@ export const Settings = () => {
     }, [localMaxValue, localStartValue]);
 
     const onChangeMaxHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        setLocalmaxValue(+e.currentTarget.value)
+        setLocalMaxValue(+e.currentTarget.value)
         if (!state.isChanged) {
             dispatch(changeStatusAC(true))
         }

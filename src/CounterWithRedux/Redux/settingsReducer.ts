@@ -3,14 +3,15 @@ type setMaxCountACType = ReturnType<typeof setMaxCountAC>
 type changeStatusACType = ReturnType<typeof changeStatusAC>
 type setErrorACType = ReturnType<typeof setErrorAC>
 
-type ActionType = setStartCountACType | setMaxCountACType | changeStatusACType | setErrorACType
+type ActionType = setStartCountACType | setMaxCountACType | changeStatusACType | setErrorACType;
+
 export type InitialStateType = {
     startCount: number
     maxCount: number
     isChanged: boolean
     error: boolean
 }
-const initialState: InitialStateType = {
+let initialState: InitialStateType = {
     startCount: 0,
     maxCount: 5,
     isChanged: false,
@@ -22,7 +23,7 @@ export const settingsReducer = (state: InitialStateType = initialState, action: 
         case "SET-START-COUNT":
             return {...state, startCount: action.payload.startCount}
         case "SET-MAX-COUNT":
-            return {...state, maxValue: action.payload.maxCount}
+            return {...state, maxCount: action.payload.maxCount}
         case "SET-IS-CHANGED":
             return {...state, isChanged: action.payload.isChanged}
         case "SET-IS-ERROR":
