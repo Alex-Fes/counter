@@ -1,5 +1,6 @@
-import {combineReducers, legacy_createStore as createStore} from "redux"
+
 import {settingsReducer} from "./settingsReducer";
+import {combineReducers, legacy_createStore as createStore} from "redux";
 
 type ReducerType = typeof rootReducer;
 export type StoreType = ReturnType<ReducerType>

@@ -1,12 +1,16 @@
 import React from 'react';
 import './App.css';
-import CounterMain from "./Counter-Main/CounterMain";
+import {Settings} from "./CounterWithRedux/Settings/Settings";
+import {CounterWithRedux} from "./CounterWithRedux/Counter/CounterWithRedux";
 
 function App() {
     return (
         <div className="App">
 
-            <CounterMain/>
+            {/*<CounterMain/>*/}
+
+            <Settings/>
+            <CounterWithRedux/>
 
         </div>
     );
