@@ -5,7 +5,7 @@ import {combineReducers, legacy_createStore as createStore} from "redux";
 type ReducerType = typeof rootReducer;
 export type StoreType = ReturnType<ReducerType>
 
-let rootReducer = combineReducers({
+const rootReducer = combineReducers({
     settings: settingsReducer
 })
 
